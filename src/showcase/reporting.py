@@ -1,3 +1,15 @@
+"""
+Portfolio version of monthly reporting logic adapted from a marketplace backend.
+
+In the original project, this code read shop orders and order items from the
+database, then produced business-facing summaries for sales, refunds, inventory,
+and top products. The output was designed to support operational reporting and
+finance-ready summaries for shop owners.
+
+This standalone version uses plain Python data structures but preserves the same
+aggregation style and reporting decisions from the original service.
+"""
+
 from __future__ import annotations
 
 from collections import defaultdict

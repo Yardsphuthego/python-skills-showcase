@@ -1,3 +1,14 @@
+"""
+Portfolio version of wallet business logic adapted from a Django service layer.
+
+In the original project, this logic lived in a wallet services module behind API
+views. Transfers verified a user's PIN, checked balance and limits, then wrote
+both wallet updates and the transaction record inside a database transaction.
+
+This standalone version keeps the same rule flow, but replaces Django models
+with dataclasses so reviewers can read the core Python logic in isolation.
+"""
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field

@@ -1,3 +1,15 @@
+"""
+Portfolio version of payment-service logic adapted from a Django backend.
+
+In the original project, deposits and withdrawals were tracked with payment
+request models, provider configuration records, and wallet ledger references.
+The service layer normalized phone numbers, calculated provider fees, enforced
+provider limits, and prepared request metadata for later provider integration.
+
+This demo keeps the same decision-making logic while removing the framework and
+database details so the Python flow is easier to review publicly.
+"""
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field

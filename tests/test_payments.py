@@ -1,3 +1,14 @@
+"""
+These tests document how the payment demo maps to the original backend.
+
+In the private project, the payment service sat between wallet logic and mobile
+money providers. It normalized phone numbers, calculated provider-specific
+charges, enforced min/max withdrawal rules, and created request records that
+could later be reconciled against provider callbacks.
+
+The tests here keep the focus on those core decisions.
+"""
+
 from decimal import Decimal
 
 import pytest
@@ -24,10 +35,14 @@ def _providers() -> dict[str, PaymentProvider]:
 
 
 def test_normalize_phone_number_handles_local_botswana_format():
+    # The original service accepted different phone formats from users and
+    # normalized them before calling external providers.
     assert normalize_phone_number("71234567") == "+26771234567"
 
 
 def test_initiate_deposit_calculates_fee_and_tracks_metadata():
+    # In production, deposits created a tracking record with fees and metadata
+    # before any live provider integration step was attempted.
     request = initiate_deposit(
         user_phone="71234567",
         amount=Decimal("100.00"),
@@ -42,6 +57,8 @@ def test_initiate_deposit_calculates_fee_and_tracks_metadata():
 
 
 def test_initiate_withdrawal_blocks_when_balance_is_too_low():
+    # The real project rejected withdrawals when the wallet could not cover
+    # both the payout amount and the provider fee.
     with pytest.raises(PaymentError):
         initiate_withdrawal(
             user_phone="+26771234567",

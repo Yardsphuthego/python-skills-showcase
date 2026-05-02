@@ -1,3 +1,13 @@
+"""
+These tests describe how the reporting demo came from a shop-report service.
+
+In the original marketplace project, the reporting layer transformed order and
+inventory data into monthly summaries for shop owners. That included completed
+sales, refunds, item counts, low-stock alerts, and top-performing products.
+
+This test keeps one small dataset that demonstrates those reporting outcomes.
+"""
+
 from datetime import datetime
 from decimal import Decimal
 
@@ -5,6 +15,8 @@ from showcase.reporting import Order, OrderItem, Product, generate_financial_rep
 
 
 def test_generate_financial_report_summarizes_orders_products_and_daily_sales():
+    # This mirrors the kind of month-end summary the original project produced
+    # for a single shop owner dashboard or downloadable report.
     orders = [
         Order(
             order_id="1",

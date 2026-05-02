@@ -1,3 +1,15 @@
+"""
+Portfolio version of secure messaging helpers adapted from a chat feature.
+
+In the original project, message content was encrypted before being stored in
+the database and decrypted when displayed back to authenticated users. The app
+accepted an environment-provided key and needed safe fallback behavior when the
+key was missing or invalid.
+
+This public demo keeps the same Fernet-based approach in a smaller utility
+module so the security-minded Python logic can be reviewed independently.
+"""
+
 from __future__ import annotations
 
 import base64

@@ -1,3 +1,14 @@
+"""
+These tests explain how the wallet demo maps back to the original project.
+
+In the private Django app, the equivalent logic lived in a wallet service layer
+that sat behind API views. A transfer verified the sender PIN, checked spend
+limits, updated both wallet balances, and stored a transaction record with
+before/after balance snapshots.
+
+The tests below focus on those business rules rather than framework behavior.
+"""
+
 from decimal import Decimal
 
 import pytest
@@ -6,6 +17,8 @@ from showcase.wallet import InvalidPinError, Wallet, transfer, upgrade_wallet_li
 
 
 def test_transfer_updates_both_wallets_and_tracks_balances():
+    # In the original project, this represented the main peer-to-peer transfer
+    # path where both wallets and the ledger record had to stay in sync.
     sender = Wallet(owner_id="alice", pin="1234", balance=Decimal("250.00"))
     recipient = Wallet(owner_id="bob", pin="9999", balance=Decimal("50.00"))
 
@@ -19,6 +32,8 @@ def test_transfer_updates_both_wallets_and_tracks_balances():
 
 
 def test_transfer_rejects_bad_pin():
+    # The real application blocked transfers early if the wallet PIN was wrong,
+    # so this test keeps that security check visible in the public example.
     sender = Wallet(owner_id="alice", pin="1234", balance=Decimal("250.00"))
     recipient = Wallet(owner_id="bob", pin="9999", balance=Decimal("50.00"))
 
@@ -27,6 +42,8 @@ def test_transfer_rejects_bad_pin():
 
 
 def test_upgrade_wallet_limits_changes_tier_thresholds():
+    # In the full project, KYC approval could move a user into a higher tier
+    # with larger transaction limits. This test mirrors that rule change.
     wallet = Wallet(owner_id="alice", pin="1234")
 
     upgrade_wallet_limits(wallet, "premium")
