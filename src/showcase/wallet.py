@@ -43,6 +43,8 @@ class Wallet:
     updated_at: datetime = field(default_factory=_utc_now)
 
     def can_spend(self, amount: Decimal) -> tuple[bool, str]:
+        # Keep the validation result machine-friendly by returning a boolean
+        # and a short reason string that callers can map to domain errors.
         if self.status != "active":
             return False, "wallet is not active"
         if amount <= Decimal("0.00"):
@@ -113,15 +115,20 @@ def transfer(
     if sender.owner_id == recipient.owner_id:
         raise InvalidRecipientError("You cannot send money to yourself.")
 
+    # Run cheap validation before mutating any balances.
     ok, reason = sender.can_spend(amount)
     if not ok:
         if "limit" in reason:
             raise LimitExceededError(reason)
         raise InsufficientFundsError(reason)
 
+    # Capture both balances before the transfer so the transaction record tells
+    # the full story of what changed.
     sender_before = sender.balance
     recipient_before = recipient.balance
 
+    # Apply the transfer and update spending counters in one place so the
+    # wallet state stays internally consistent.
     sender.balance -= amount
     recipient.balance += amount
     sender.spent_today += amount

@@ -59,6 +59,8 @@ def generate_financial_report(
     order_items: list[OrderItem],
     products: list[Product],
 ) -> dict:
+    # Limit the report to the requested accounting window before doing any
+    # heavier aggregation work.
     month_orders = [
         order
         for order in orders
@@ -73,6 +75,8 @@ def generate_financial_report(
     units_sold = 0
     for item in filtered_items:
         order_units[item.order_id] += item.quantity
+        # Only completed orders contribute to revenue metrics; refunded or
+        # cancelled orders are still tracked later in the summary section.
         matching_order = next(order for order in month_orders if order.order_id == item.order_id)
         if matching_order.status not in COMPLETED_STATUSES:
             continue
@@ -126,6 +130,8 @@ def generate_financial_report(
         )
         row["orders"] += 1
 
+        # Build both high-level totals and day-level rollups in a single pass
+        # so the report stays fast and the logic is easy to follow.
         if order.status in COMPLETED_STATUSES:
             completed_orders += 1
             gross_sales += amount
@@ -173,6 +179,8 @@ def generate_financial_report(
         for _, row in sorted(daily.items())
     ]
 
+    # Rank products by units first, then revenue, which makes the list more
+    # meaningful for operational review than revenue alone.
     top_products = sorted(
         (
             {

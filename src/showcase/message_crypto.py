@@ -22,6 +22,8 @@ def _build_fernet(key: str | None = None) -> Fernet | None:
     try:
         return Fernet(key_bytes)
     except Exception:
+        # Accept passphrase-like input for demo convenience by reshaping it
+        # into a valid Fernet key instead of failing hard.
         derived = base64.urlsafe_b64encode(key_bytes.ljust(32, b"0")[:32])
         return Fernet(derived)
 
@@ -34,6 +36,8 @@ def encrypt_message(plaintext: str, *, key: str | None = None) -> str:
 
     fernet = _build_fernet(key)
     if not fernet:
+        # Falling back to plaintext keeps the demo usable even when a reviewer
+        # has not configured an environment key yet.
         return plaintext
 
     token = fernet.encrypt(plaintext.encode("utf-8")).decode("utf-8")

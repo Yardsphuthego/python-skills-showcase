@@ -95,6 +95,9 @@ def normalize_phone_number(value: str) -> str:
         return f"+{digits}" if digits else raw
 
     digits = "".join(ch for ch in raw if ch.isdigit())
+    # These rules mirror a common Botswana formatting flow:
+    # local 8-digit numbers become +267..., leading 0 is stripped, and
+    # already-international values are normalized to a clean +<digits> shape.
     if digits.startswith("267"):
         return f"+{digits}"
     if len(digits) == 8:
@@ -135,6 +138,8 @@ def initiate_deposit(
         fee=fee,
         phone_number=normalize_phone_number(user_phone),
         transaction_ref=transaction_ref or f"LEDGER-{uuid4().hex[:10].upper()}",
+        # Metadata gives downstream systems lightweight context without
+        # bloating the main payment request fields.
         metadata={"initiated_at": _utc_now().isoformat()},
     )
 
@@ -151,6 +156,8 @@ def initiate_withdrawal(
 ) -> PaymentRequest:
     provider = get_active_provider(providers, provider_name)
 
+    # Provider limits are checked before balance so callers get the most useful
+    # business-facing error first.
     if amount < provider.min_amount:
         raise PaymentError(f"Minimum withdrawal is {provider.min_amount}.")
     if amount > provider.max_amount:
@@ -169,6 +176,8 @@ def initiate_withdrawal(
         phone_number=normalize_phone_number(destination_phone),
         transaction_ref=transaction_ref or f"LEDGER-{uuid4().hex[:10].upper()}",
         metadata={
+            # Keeping total debit in metadata makes reconciliation easier when
+            # the ledger amount and provider amount need to be compared later.
             "initiated_by": normalize_phone_number(user_phone),
             "total_debit": str(total_debit),
         },
