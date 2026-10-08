@@ -1,132 +1,101 @@
-# Python Skills Showcase
+# Python & Networking Skills Showcase
 
-This repository is a small, standalone portfolio project built to demonstrate how I use Python for backend and product logic without exposing my full private codebase.
+**Mmoloki Phuthego · Network Computing Student · Full Stack Python Developer**
 
-The examples here are adapted from patterns I have used in real work, then simplified into framework-light modules so they are easy to review on their own.
+Gaborone, Botswana · [GitHub profile](https://github.com/Yardsphuthego) · [Email](mailto:ns24-035@thuto.bac.ac.bw)
 
-Each module now also includes context about how the same logic worked in the
-original project, so reviewers can see both the standalone Python example and
-the real backend scenario it was adapted from.
+**Available for industrial attachment: 11 January – 30 June 2027**
 
-## What This Shows
+I'm a third-year BSc (Hons) Network Computing student at Botswana Accountancy College. Networking is my primary specialisation, alongside Python backend development, network automation, and cloud deployment. I'm seeking attachment in a software or fintech team where I can contribute across development and infrastructure.
 
-- Business logic design separated from transport or UI concerns
-- Wallet-style balance handling and transfer validation
-- Payment workflows with provider rules, fee calculation, and request tracking
-- Reporting logic that aggregates orders into useful business summaries
-- Secure message encryption and decryption using `cryptography`
-- Basic automated testing with `pytest`
+This portfolio brings together runnable Python examples, selected project summaries, and my networking background. The Python examples are simplified adaptations of patterns from my private backend work.
 
-## Repository Structure
+## Start Here
 
-```text
-python-skills-showcase/
-├── README.md
-├── pyproject.toml
-├── src/showcase/
-│   ├── wallet.py
-│   ├── payments.py
-│   ├── reporting.py
-│   └── message_crypto.py
-└── tests/
-    ├── test_wallet.py
-    ├── test_payments.py
-    ├── test_reporting.py
-    └── test_message_crypto.py
-```
+- **Review my Python:** [wallet logic](src/showcase/wallet.py), [payment workflows](src/showcase/payments.py), [reporting](src/showcase/reporting.py), and [message encryption](src/showcase/message_crypto.py).
+- **Explore my projects:** [selected project portfolio](docs/projects.md), including a public water-infrastructure application.
+- **Review my networking background:** [networking, automation, and Cisco training](docs/networking.md).
+- **Try the examples:** use the setup instructions below and run the [tests](tests/).
 
-## Module Highlights
+## Python Examples
 
-### `wallet.py`
+| Example | What you can review | Tests |
+| --- | --- | --- |
+| [Wallet](src/showcase/wallet.py) | Dataclasses, Decimal balances, PIN checks, transfer validation, spending limits, transaction snapshots | [Wallet tests](tests/test_wallet.py) |
+| [Payments](src/showcase/payments.py) | Provider availability, fee calculation, Botswana phone formatting, withdrawal limits, connector interfaces | [Payment tests](tests/test_payments.py) |
+| [Reporting](src/showcase/reporting.py) | Monthly order aggregation, sales summaries, refunds, product and inventory metrics | [Reporting tests](tests/test_reporting.py) |
+| [Messaging](src/showcase/message_crypto.py) | Fernet encryption/decryption and configurable keys | [Encryption test](tests/test_message_crypto.py) |
 
-Shows how I structure transactional business logic:
+[Read the walkthroughs and original project context](docs/python-examples.md).
 
-- custom exceptions for clear failure modes
-- transfer validation with PIN checks
-- balance updates with before/after snapshots
-- configurable daily and monthly spending limits
+These are educational, in-memory examples. They do not process live payments or provide production wallet storage. The messaging helper includes plaintext fallback behaviour; see the [demo boundaries](docs/python-examples.md#demo-boundaries).
 
-Original project context:
-In the source application, this logic lived in a Django service layer behind
-wallet and transfer API endpoints. The real version used database transactions
-and wallet models so sender balances, recipient balances, and transaction
-history stayed consistent.
+## Networking & Infrastructure
 
-### `payments.py`
+- **Networking:** VLANs, OSPF, IPv4/IPv6 addressing, ACLs, NAT, and network security fundamentals.
+- **Automation:** Python, Netmiko, Cisco pyATS, and Genie.
+- **Cloud & systems:** application deployment and live environment management on AWS and Microsoft Azure; Linux, domain configuration, and DNS.
+- **Hands-on practice:** a personal local server, Nmap, and website security testing.
 
-Shows how I model payment workflows:
+### Cisco Networking Academy — Course Completions
 
-- provider lookup and availability checks
-- fee calculation from percentage and flat charges
-- phone number normalization
-- deposit and withdrawal request tracking
-- connector abstraction for future live integrations
+| Course | Completion |
+| --- | --- |
+| CCNA 1: Introduction to Networks | Completed |
+| CCNA 3: Enterprise Networking, Security, and Automation | 7 September 2026 |
 
-Original project context:
-In the source application, this sat between the wallet system and Botswana
-mobile money providers. It prepared payment requests, applied provider rules,
-tracked fees, and stored metadata needed for reconciliation and callbacks.
+These are Cisco Networking Academy course completions, not a claim of the full CCNA certification. Networking skills are described in the [networking overview](docs/networking.md); this repository currently contains Python backend examples rather than device configurations or automation lab submissions.
 
-### `reporting.py`
+## Selected Projects
 
-Shows how I turn raw order data into business reporting:
+| Project | Focus | Review |
+| --- | --- | --- |
+| Commerce and payment platform | Marketplace interfaces and online commerce workflows | [Summary and related Python examples](docs/projects.md#commerce-and-payment-platform) |
+| Student voting system | Software supporting student voting | [Project summary](docs/projects.md#student-voting-system) |
+| Food inflation forecasting | AI applied to food inflation forecasting | [Project summary](docs/projects.md#food-inflation-forecasting) |
+| TAIMS Platform | Water-storage asset management, inspections, work orders, and reporting | [Public repository](https://github.com/Yardsphuthego/taims-platform) |
 
-- monthly filtering
-- daily sales summaries
-- refund and cancellation tracking
-- product performance ranking
-- inventory and customer metrics
-
-Original project context:
-In the source application, this reporting service summarized marketplace shop
-activity into monthly business reports. It was designed for operational review,
-shop-owner dashboards, and finance-oriented reporting outputs.
-
-### `message_crypto.py`
-
-Shows a simple secure-by-default messaging helper:
-
-- Fernet-based encryption and decryption
-- support for environment keys or explicit keys
-- graceful fallback behavior when a key is missing
-
-Original project context:
-In the source application, message content was encrypted before database
-storage and decrypted when shown back inside the chat experience. The public
-demo keeps that same idea in a smaller utility module.
-
-## Test Files
-
-The `tests/` folder does more than verify behavior. Each test file also
-explains how the public example maps back to the original private project:
-
-- `test_wallet.py` explains the wallet transfer and tier-limit flow
-- `test_payments.py` explains the provider-fee and withdrawal checks
-- `test_reporting.py` explains the monthly shop-report aggregation
-- `test_message_crypto.py` explains the encrypt-at-rest message flow
+Demonstrations and selected code walkthroughs for private projects are available on request.
 
 ## Run Locally
 
+Requires **Python 3.11 or newer**.
+
 ```bash
-python -m venv .venv
+git clone https://github.com/Yardsphuthego/python-skills-showcase.git
+cd python-skills-showcase
+python3 -m venv .venv
 source .venv/bin/activate
-pip install -e .[dev]
-pytest
+python -m pip install -e ".[dev]"
+python -m pytest -q
 ```
 
-## Example Test Run
+On Windows, create the environment with `py -m venv .venv` and activate it in PowerShell with `.venv\Scripts\Activate.ps1`, then run the same install and test commands.
 
-```bash
-pytest -q
-```
+## Education & Skills
 
-## Why I Made This Repo
+**Botswana Accountancy College, Gaborone**
 
-My main application repositories are private, so I created this separate showcase to illustrate the kind of Python backend work I do:
+BSc (Hons) Network Computing · Year 3 · Full-time
 
-- domain logic
-- data processing
-- security-minded utilities
-- testing
+Expected completion: **July 2028**
 
-This lets reviewers see my coding style and problem-solving approach without exposing proprietary project details.
+Current modules: Computer Systems Administration, Enterprise Networking, and Network Security.
+
+| Area | Technologies |
+| --- | --- |
+| Backend & data | Python, Django, PostgreSQL |
+| Application development | Flutter |
+| Machine learning | PyTorch |
+| Containers & infrastructure | Docker, Kubernetes, AWS, Microsoft Azure, Linux |
+| Technical documentation | LaTeX |
+
+## Achievement
+
+**Top 10 finalist — 2025/26 BAC Student Investment Battlefield**, with **Small Yachts**. Selected from 59 entries to progress to the incubation stage.
+
+## Attachment & Contact
+
+Available **11 January – 30 June 2027** for industrial attachment.
+
+For opportunities, project demonstrations, or selected code walkthroughs, contact **[ns24-035@thuto.bac.ac.bw](mailto:ns24-035@thuto.bac.ac.bw)**.
