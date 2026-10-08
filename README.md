@@ -50,11 +50,11 @@ These are Cisco Networking Academy course completions, not a claim of the full C
 
 | Project | Focus | Review |
 | --- | --- | --- |
-| Semausu | Django commerce, wallets, payments, and reporting | [Summary and Python examples](docs/projects.md#commerce-and-payment-platform) |
+| | Django commerce, wallets, payments, and reporting | [Summary and Python examples](docs/projects.md#commerce-and-payment-platform) |
 | MedLocate | Medicine inventory, validated Excel imports, and prescription workflows | [Project summary](docs/projects.md#medlocate) |
 | TEBELO | Geospatial incident reporting and public-service delivery workflows | [Project summary](docs/projects.md#tebelo) |
 | BOPA | Visual IDE with Django/React code generation and learning tools | [Project summary](docs/projects.md#bopa) |
-| CARMAVUNAPARTS | FastAPI car-parts platform with USSD search and Redis session handling | [Project summary](docs/projects.md#carmavunaparts) |
+| CAR_PARTS search | FastAPI car-parts platform with USSD search and Redis session handling | [Project summary](docs/projects.md#carmavunaparts) |
 | THUTO student voting | FastAPI election APIs and React interfaces | [Summary and public code](docs/projects.md#student-voting-system) |
 | TAIMS Platform | Water-storage assets, inspections, work orders, and reporting | [Public repository](https://github.com/Yardsphuthego/taims-platform) |
 | Food inflation forecasting | AI forecasting project described in my CV | [Project summary](docs/projects.md#food-inflation-forecasting) |
