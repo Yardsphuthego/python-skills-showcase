@@ -13,7 +13,7 @@ This portfolio brings together runnable Python examples, selected project summar
 ## Start Here
 
 - **Review my Python:** [wallet logic](src/showcase/wallet.py), [payment workflows](src/showcase/payments.py), [reporting](src/showcase/reporting.py), and [message encryption](src/showcase/message_crypto.py).
-- **Explore my projects:** [selected project portfolio](docs/projects.md), including a public water-infrastructure application.
+- **Explore my projects:** [selected project portfolio](docs/projects.md), covering commerce, healthcare workflows, civic services, developer tools, USSD, voting, and water infrastructure.
 - **Review my networking background:** [networking, automation, and Cisco training](docs/networking.md).
 - **Try the examples:** use the setup instructions below and run the [tests](tests/).
 
@@ -50,10 +50,14 @@ These are Cisco Networking Academy course completions, not a claim of the full C
 
 | Project | Focus | Review |
 | --- | --- | --- |
-| Commerce and payment platform | Marketplace interfaces and online commerce workflows | [Summary and related Python examples](docs/projects.md#commerce-and-payment-platform) |
-| Student voting system | Software supporting student voting | [Project summary](docs/projects.md#student-voting-system) |
-| Food inflation forecasting | AI applied to food inflation forecasting | [Project summary](docs/projects.md#food-inflation-forecasting) |
-| TAIMS Platform | Water-storage asset management, inspections, work orders, and reporting | [Public repository](https://github.com/Yardsphuthego/taims-platform) |
+| Semausu | Django commerce, wallets, payments, and reporting | [Summary and Python examples](docs/projects.md#commerce-and-payment-platform) |
+| MedLocate | Medicine inventory, validated Excel imports, and prescription workflows | [Project summary](docs/projects.md#medlocate) |
+| TEBELO | Geospatial incident reporting and public-service delivery workflows | [Project summary](docs/projects.md#tebelo) |
+| BOPA | Visual IDE with Django/React code generation and learning tools | [Project summary](docs/projects.md#bopa) |
+| CARMAVUNAPARTS | FastAPI car-parts platform with USSD search and Redis session handling | [Project summary](docs/projects.md#carmavunaparts) |
+| THUTO student voting | FastAPI election APIs and React interfaces | [Summary and public code](docs/projects.md#student-voting-system) |
+| TAIMS Platform | Water-storage assets, inspections, work orders, and reporting | [Public repository](https://github.com/Yardsphuthego/taims-platform) |
+| Food inflation forecasting | AI forecasting project described in my CV | [Project summary](docs/projects.md#food-inflation-forecasting) |
 
 Demonstrations and selected code walkthroughs for private projects are available on request.
 
@@ -84,8 +88,8 @@ Current modules: Computer Systems Administration, Enterprise Networking, and Net
 
 | Area | Technologies |
 | --- | --- |
-| Backend & data | Python, Django, PostgreSQL |
-| Application development | Flutter |
+| Backend & data | Python, Django, Django REST Framework, FastAPI, SQLAlchemy, PostgreSQL, Redis |
+| Application development | Flutter, React, TypeScript, Next.js, Tauri |
 | Machine learning | PyTorch |
 | Containers & infrastructure | Docker, Kubernetes, AWS, Microsoft Azure, Linux |
 | Technical documentation | LaTeX |
