@@ -50,7 +50,7 @@ These are Cisco Networking Academy course completions, not a claim of the full C
 
 | Project | Focus | Review |
 | --- | --- | --- |
-| | Django commerce, wallets, payments, and reporting | [Summary and Python examples](docs/projects.md#commerce-and-payment-platform) |
+| online_ecommerce| Django commerce, wallets, payments, and reporting | [Summary and Python examples](docs/projects.md#commerce-and-payment-platform) |
 | MedLocate | Medicine inventory, validated Excel imports, and prescription workflows | [Project summary](docs/projects.md#medlocate) |
 | TEBELO | Geospatial incident reporting and public-service delivery workflows | [Project summary](docs/projects.md#tebelo) |
 | BOPA | Visual IDE with Django/React code generation and learning tools | [Project summary](docs/projects.md#bopa) |
